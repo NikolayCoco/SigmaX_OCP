@@ -1,0 +1,11 @@
+# SigmaX_OCP_py 运行依赖
+#
+# 安装：
+#   python -m pip install -r requirements.txt
+# 国内网络可加镜像：
+#   python -m pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+#
+# 注意：numpy 需要 2.0 及以上（代码使用 np.trapezoid；numpy 2.x 已移除 np.trapz）
+
+numpy>=2.0
+matplotlib>=3.5
