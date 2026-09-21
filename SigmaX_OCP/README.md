@@ -188,23 +188,10 @@ validate_suite('...\SigmaX_OCP\src')
 
 ```
 [1] 梯度是下降方向      : qubit=PASS example=PASS
-[2] 求解器成本下降       : qubit 0.316→0.175(60步)  example 4.554→4.494
+[2] 求解器成本下降       : qubit 0.316→0.114(60步)  example 4.554→4.494
 [3] Adam 方向优化        : qubit 0.316→0.053
 [4] 同伦延拓运行         : kappa 4 步 J=0.052
 tau 延拓                 : 3 步 J=0.073
 动画                     : 生成 5 帧、1500×1000 的 GIF
 ```
 
-> ⚠️ **以上是修复前的记录。** `+ocp/QubitReset.m` 的两处修正
-> （`matVecTheta` 中 Gp 的几何因子、`initialState` 忽略 `pInitial`）
-> 会改变第 [2] 项：qubit 的 60 步结果应从 `0.175` 变为 **`0.114`**
-> （Python 移植版实测 1.1402e-01）。其余各项（example、Adam、延拓、动画）
-> 预期不变。请在 R2024a 上重跑 `tests/validate_suite.m` 确认。
-
----
-
-## 9. 待办 / 备注
-
-- **`_source_original/`**：原始研究代码备份（含 CasADi/牛顿法的 `code_Gradient_AD`），只读参考，非成品。若想复用牛顿法，需自行安装 CasADi 并把 `addpath('casadi\')` 加回。
-- **罚函数法**：descriptor 里作为原理讲解；实现上默认用更稳定的**投影梯度法**（`useProjection`）。
-- 若要解决**另一个**最优控制问题：继承 `AbstractOCP` 即可，无需改任何求解器代码。（见 `ocp.ControlExample` 与 `demo_example1.m`。）
